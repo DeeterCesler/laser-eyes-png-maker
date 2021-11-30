@@ -1,0 +1,77 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    max-height: 600px;
+    width: 3px;
+    max-width: 900px;
+    float:left;
+    overflow: auto;
+    text-align: center;
+}
+
+#uploaded {
+    /* margin: 0 40%; */
+}
+
+@keyframes spin {
+    from {transform: rotate(0deg)}
+    to {transform: rotate(360deg)}
+}
+
+.laser {
+    /* background-image: url('./laser.png'); */
+    display: inline;
+    transform-origin: 46% 46%;
+    height: 1000px;
+    width: 1000px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+    transform: rotate(30deg);
+    /* animation: spin 2s infinite linear; */
+}
+
+#one {
+    top: -5227px;
+    left: 300px;
+}
+
+#two {
+    top: -5225px;
+    left: 395px;
+}
+
+.header-image {
+    z-index: 1;
+    /* border-radius: 0 0 0 120px; */
+    background-image: url('./me2.jpg');
+    /* transform: scale(0.8); */
+    background-size: contain;
+    /* min-height: 1000px; */
+    height: 500px;
+    width: 100%;
+    /* background-attachment: fixed; */
+    /* background-position: center; */
+    background-repeat: no-repeat;
+}
+
+.hero-wrapper, .body {
+    /* background-color: rgb(0, 0, 0); */
+    color: #fff;
+    font-size: 3em;
+    font-weight: 700;
+}
+
+.body {
+    padding: 0 15%;
+    padding-bottom: 10%;
+}
+
+#uploaded {
+    max-height: 600px;
+}

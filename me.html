@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>Deeter Cesler is your favorite person</title>
+
+    <!-- Include from the CDN -->
+    <script type="text/javascript" src="./html2canvas.js"></script>
+
+</head>
+<body>
+    <div id="sloppy-wrapper">
+        <div id="app">
+            <!-- <img id="uploaded" src="./default.png"> -->
+        </div>
+        <br/>
+        <br/>
+        <form>
+            <input type="file" name="upload"/>
+        </form>
+        <!-- Define the button 
+        that will be used to 
+        take the screenshot -->
+        <button onclick="takeshot()">
+            Take Screenshot
+        </button>
+        <br/>
+        <br/>
+        <div class="hero-wrapper" id="boi">
+        </div>
+        <script>
+
+            let shotWidth = 600;
+
+            function saveAs(uri, filename) {
+                var link = document.createElement('a');
+
+                if (typeof link.download === 'string') {
+                    link.href = uri;
+                    link.download = filename;
+
+                    //Firefox requires the link to be in the body
+                    document.body.appendChild(link);
+
+                    //simulate click
+                    link.click();
+
+                    //remove the link when done
+                    document.body.removeChild(link);
+                } else {
+                    window.open(uri);
+                }
+
+
+            }
+
+  
+            // Define the function 
+            // to screenshot the div
+            function takeshot() {
+                let div =
+                    document.getElementById('app');
+
+                    console.log('takeshot')
+                    console.log(shotWidth)
+
+                // Use the html2canvas
+                // function to take a screenshot
+                // and append it
+                // to the output div
+                html2canvas(div, {
+                    allowTaint: true,
+                    default: false,
+                    useCORS: true,
+                    width: shotWidth
+                }).then(function(canvas) {
+                    saveAs(canvas.toDataURL(), 'canvas.png')})
+            }
+
+            const state = {
+                uploadedImageSrc: "./default.png"
+            }
+            var form = document.querySelector('form');
+            const imageArea = document.getElementById('app');
+            // const image = document.getElementById("uploaded");
+            form.addEventListener('change', function(e) {
+                state.uploadedImageSrc = URL.createObjectURL(event.target.files[0])
+                const laserURL = "http://127.0.0.1:3001/lazer.png"
+                const image = new Image();
+                image.setAttribute('crossOrigin', 'anonymous');
+                image.setAttribute('id', 'uploaded');
+
+                // document.getElementById("uploaded").innerHTML = "<img id='uploaded' />"
+                image.src = state.uploadedImageSrc;
+                imageArea.appendChild(image)
+                // imageArea.width = document.getElementById("uploaded").width;
+                // console.log(image.offsetHeight)
+                // console.log(image.offsetWidth)
+                // console.log(imageArea.width)
+            
+                var xPosition;
+                var yPosition;
+                const laser1 = new Image()
+                const laser2 = new Image()
+                laser1.setAttribute('crossOrigin', 'anonymous');
+                laser2.setAttribute('crossOrigin', 'anonymous');
+                laser1.setAttribute('id',"one")
+                laser2.setAttribute('id',"two")
+                laser1.setAttribute('class',"laser")
+                laser2.setAttribute('class',"laser")
+                document.getElementById("app").appendChild(laser1);
+                document.getElementById("app").appendChild(laser2);
+                laser1.setAttribute('margin-left',"1000px")
+                laser2.setAttribute('margin-left',"1000px")
+                laser1.src = laserURL
+                laser2.src = laserURL                
+            
+
+                let eye = "left"
+
+                imageArea.addEventListener("click", getClickPosition, false);
+
+                function toggleEye() {
+                    if (eye === "left") eye = "right"
+                    else eye = "left"
+                }
+
+                const placeLaser = (toggledEye) => {
+                    shotWidth = image.clientWidth;
+                    if (toggledEye === "left") {
+                        console.log('left')
+                        laser1.style.left = xPosition + "px"
+                        laser1.style.top = yPosition + "px"
+                    } else {
+                        console.log('right')
+                        laser2.style.left = xPosition + "px"
+                        laser2.style.top = yPosition + "px"
+                    }
+                }
+
+                function getClickPosition(e) {
+                    xPosition = e.clientX - 90;
+                    yPosition = e.clientY - 480;
+
+                    placeLaser(eye)
+                    toggleEye();
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>
