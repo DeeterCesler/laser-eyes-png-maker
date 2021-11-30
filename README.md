@@ -1,13 +1,13 @@
 # How it works
 
-This is a local run only. Pretty basic:
+This is a local run only. Pretty basic, but you'll need node to spin up a simple server.
 
-- Pull down the code. Open the index.html.
-- You'll just see a basic "Choose file". Upload your image
-- Once it's uploaded, click on the screen wherever you want to place your lasers. (Right now it's only outfitted for two, but hit me up if you want more)
+# install (it requires nodejs/npm)
+npm install http-server -g
 
-If you don't place it right, just keep trying over and over as much as you want. Just a heads up, it toggles with each click which laser you're placing.
+#run
+http-server -p 3001 --cors
 
-That's it. Once you have it, do a screenrecording (Command + Shift + 5 on a Mac) for literally just a few seconds to get the GIF.
+Then open up me.html, upload the photo, click on the photo where you want your two lasers (just two). You can keep clicking it until you get it right.
 
-Find one the million MOV -> GIF converters online and there you go.
+Then hit the "take screenshot" button and it'll download.
