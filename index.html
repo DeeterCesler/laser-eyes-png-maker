@@ -8,8 +8,6 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <title>Deeter Cesler is your favorite person</title>
-
-    <!-- Include from the CDN -->
     <script type="text/javascript" src="./html2canvas.js"></script>
 
 </head>
@@ -25,7 +23,6 @@
         </div>
         <div id="photo-box">
             <div id="app">
-                <!-- <img id="uploaded" src="./default.png"> -->
             </div>
         </div>
         <br/>
@@ -44,8 +41,12 @@
         </div>
         <br/>
         <br/>
-        <div class="hero-wrapper" id="boi">
-        </div>
+        <br/>
+        <br/>
+        <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="deeter" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+        <br/>
+        <br/>
+        <br/>
         <script>
 
             let shotWidth = 600;
@@ -100,13 +101,12 @@
             }
             var form = document.querySelector('form');
             const imageArea = document.getElementById('app');
-            // const image = document.getElementById("uploaded");
             let image;
             form.addEventListener('change', function(e) {
                 console.log('change')
                 state.uploadedImageSrc = URL.createObjectURL(event.target.files[0])
                 console.log(state.uploadedImageSrc)
-                const laserURL = "http://127.0.0.1:3001/lazer.png"
+                const laserURL = "https://happy-minsky-a19081.netlify.app/lazer.png"
                 const lazerWrapper = document.createElement("div")
                 lazerWrapper.setAttribute("id","lazer-wrapper")
                 if (!document.getElementById('uploaded')) {
@@ -118,17 +118,11 @@
                     imageArea.appendChild(image)
                 } else image.src = state.uploadedImageSrc;
 
-                document.getElementById("screenshot-button").disabled = false;
-
-                // document.getElementById("uploaded").innerHTML = "<img id='uploaded' />"
-                // const newHeight = image.clientHeight;
-                // console.log(newHeight);
-                // document.getElementById("photo-box").setAttribute("style", `height: ${newHeight + 20}px`);
-
-                
+                document.getElementById("screenshot-button").disabled = false;                
 
                 var xPosition;
                 var yPosition;
+
                 const laser1 = new Image()
                 const laser2 = new Image()
                 laser1.setAttribute('crossOrigin', 'anonymous');
@@ -177,22 +171,14 @@
 
                 function getClickPosition(e) {
                     const bounds = image.getBoundingClientRect();
-                    console.log(bounds)
-                    console.log(e.clientX)
-                    console.log('e.clientY')
-                    console.log(e.clientY)
-                    console.log('bounds top')
-                    console.log(bounds.top)
-                    // xPosition = (bounds.left);
-                    // yPosition = (bounds.top);
-                    // xPosition = e.clientX + (laser1.width /2);
-                    // yPosition = e.clientY + (laser1.height/2);
                     const relativeXBoundary = e.clientX - bounds.left;
                     const relativeYBoundary = e.clientY - bounds.top;
+
                     xPosition = relativeXBoundary - (laser1.width /2) + 10;
                     yPosition = relativeYBoundary - (laser1.height/2) + 10;
 
-                    placeLaser(eye)
+                    placeLaser(eye);
+                    
                     toggleEye();
                 }
             });

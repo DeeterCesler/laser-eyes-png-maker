@@ -14,17 +14,11 @@ html, body {
     border: 2px solid black;
     border-radius: 4px;
     padding: 10px;
-    /* margin-top: 10%; */
     margin-left: auto;
     margin-right: auto;
     min-height: 1px;
     background-image: url('./default1.png') ;
     background-repeat: round;
-}
-
-#photo-box:after {
-    /* content: 'YOUR PHOTO HERE'; */
-    z-index: -1;
 }
 
 #app {
@@ -44,7 +38,6 @@ html, body {
 }
 
 .laser {
-    /* background-image: url('./laser.png'); */
     display: inline;
     transform-origin: 46% 46%;
     height: 1000px;
@@ -56,7 +49,6 @@ html, body {
     width: 200px;
     z-index: 2;
     transform: rotate(30deg);
-    /* animation: spin 2s infinite linear; */
 }
 
 #one {
@@ -75,20 +67,14 @@ html, body {
 
 .header-image {
     z-index: 1;
-    /* border-radius: 0 0 0 120px; */
     background-image: url('./me2.jpg');
-    /* transform: scale(0.8); */
     background-size: contain;
-    /* min-height: 1000px; */
     height: 500px;
     width: 100%;
-    /* background-attachment: fixed; */
-    /* background-position: center; */
     background-repeat: no-repeat;
 }
 
 .hero-wrapper, .body {
-    /* background-color: rgb(0, 0, 0); */
     color: #fff;
     font-size: 3em;
     font-weight: 700;
@@ -100,7 +86,7 @@ html, body {
 }
 
 #uploaded {
-    max-height: 600px; /* 600px minus 4 to account for border width */
+    max-height: 600px;
 }
 
 #lazer-wrapper {
