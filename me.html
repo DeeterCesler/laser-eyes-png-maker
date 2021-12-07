@@ -142,7 +142,7 @@
                     shotWidth = image.clientWidth - (image.clientWidth * 0.05); //taking off 5% just to tighten it up
                     document.getElementById('photo-box').setAttribute('style',`max-width: ${image.width}px; max-height: ${image.height}px; padding: 0;`)
                     console.log(imageArea.width)
-                }, 500);
+                }, 150);
 
                 imageArea.addEventListener("click", getClickPosition, false);
 
@@ -172,10 +172,14 @@
                     console.log(e.clientY)
                     console.log('bounds top')
                     console.log(bounds.top)
-                    xPosition = e.clientX - (bounds.left);
-                    yPosition = e.clientY - (bounds.top);
-                    // xPosition = (e.clientX);
-                    // yPosition = (e.clientY);
+                    // xPosition = (bounds.left);
+                    // yPosition = (bounds.top);
+                    // xPosition = e.clientX + (laser1.width /2);
+                    // yPosition = e.clientY + (laser1.height/2);
+                    const relativeXBoundary = e.clientX - bounds.left;
+                    const relativeYBoundary = e.clientY - bounds.top;
+                    xPosition = relativeXBoundary - (laser1.width /2) + 10;
+                    yPosition = relativeYBoundary - (laser1.height/2) + 10;
 
                     placeLaser(eye)
                     toggleEye();
