@@ -15,6 +15,14 @@
 </head>
 <body>
     <div id="sloppy-wrapper">
+        <div class="list">
+            <h1>Add Laser Eyes to Your Profile Pic</h1>
+            <br/>
+            <br/>
+            <p>1. Upload a photo.</p>
+            <p>2. Click over your eyes to add lasers (max two).</p>
+            <p>3. Click "Take Screenshot" to download your photo.</p>
+        </div>
         <div id="photo-box">
             <div id="app">
                 <!-- <img id="uploaded" src="./default.png"> -->
@@ -22,15 +30,18 @@
         </div>
         <br/>
         <br/>
-        <form>
-            <input type="file" name="upload" id="upload-photo"/>
-        </form>
-        <!-- Define the button 
-        that will be used to 
-        take the screenshot -->
-        <button id="screenshot-button" disabled onclick="takeshot()">
-            Take Screenshot
-        </button>
+        <div class="button-wrapper">
+            <form>
+                <label for="upload-photo" id="upload-label">Upload Photo</label>
+                <input type="file" name="upload" id="upload-photo" title=" "/>
+            </form>
+            <!-- Define the button 
+            that will be used to 
+            take the screenshot -->
+            <button id="screenshot-button" disabled onclick="takeshot()">
+                Take Screenshot
+            </button>
+        </div>
         <br/>
         <br/>
         <div class="hero-wrapper" id="boi">
@@ -140,7 +151,7 @@
                     console.log('image.width')
                     console.log(imageArea.width)
                     shotWidth = image.clientWidth - (image.clientWidth * 0.05); //taking off 5% just to tighten it up
-                    document.getElementById('photo-box').setAttribute('style',`max-width: ${image.width}px; max-height: ${image.height}px; padding: 0;`)
+                    document.getElementById('photo-box').setAttribute('style',`width: ${image.width}px; height: ${image.height + 4}px; padding: 0;`)
                     console.log(imageArea.width)
                 }, 150);
 
