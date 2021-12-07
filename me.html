@@ -136,6 +136,14 @@
 
                 let eye = "left"
 
+                setTimeout(function(){
+                    console.log('image.width')
+                    console.log(imageArea.width)
+                    shotWidth = image.clientWidth - (image.clientWidth * 0.05); //taking off 5% just to tighten it up
+                    document.getElementById('photo-box').setAttribute('style',`max-width: ${image.width}px; max-height: ${image.height}px; padding: 0;`)
+                    console.log(imageArea.width)
+                }, 500);
+
                 imageArea.addEventListener("click", getClickPosition, false);
 
                 function toggleEye() {
@@ -144,7 +152,6 @@
                 }
 
                 const placeLaser = (toggledEye) => {
-                    shotWidth = image.clientWidth;
 
                     if (toggledEye === "left") {
                         console.log('left')
@@ -165,10 +172,10 @@
                     console.log(e.clientY)
                     console.log('bounds top')
                     console.log(bounds.top)
-                    // xPosition = e.clientX - (bounds.left);
-                    // yPosition = e.clientY - (4*bounds.top);
-                    xPosition = (e.clientX);
-                    yPosition = (e.clientY);
+                    xPosition = e.clientX - (bounds.left);
+                    yPosition = e.clientY - (bounds.top);
+                    // xPosition = (e.clientX);
+                    // yPosition = (e.clientY);
 
                     placeLaser(eye)
                     toggleEye();

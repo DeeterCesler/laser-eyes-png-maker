@@ -6,7 +6,7 @@ html, body {
 }
 
 #photo-box {
-    text-align: center;
+    text-align: center !important;
     background-color: white;
     height: 620px;
     width: 620px;
@@ -24,7 +24,6 @@ html, body {
     max-height: 600px;
     max-width: 600px;
     overflow: hidden;
-    text-align: center;
     position: relative;
 }
 
