@@ -103,6 +103,10 @@ html, body {
     margin: 0;
 }
 
+.list h1 {
+    margin-left: -5%
+}
+
 #upload-label, #screenshot-button {
     border: 1px black solid;
     color: #000;
