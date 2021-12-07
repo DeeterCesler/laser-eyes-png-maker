@@ -15,18 +15,20 @@
 </head>
 <body>
     <div id="sloppy-wrapper">
-        <div id="app">
-            <!-- <img id="uploaded" src="./default.png"> -->
+        <div id="photo-box">
+            <div id="app">
+                <!-- <img id="uploaded" src="./default.png"> -->
+            </div>
         </div>
         <br/>
         <br/>
         <form>
-            <input type="file" name="upload"/>
+            <input type="file" name="upload" id="upload-photo"/>
         </form>
         <!-- Define the button 
         that will be used to 
         take the screenshot -->
-        <button onclick="takeshot()">
+        <button id="screenshot-button" disabled onclick="takeshot()">
             Take Screenshot
         </button>
         <br/>
@@ -88,21 +90,32 @@
             var form = document.querySelector('form');
             const imageArea = document.getElementById('app');
             // const image = document.getElementById("uploaded");
+            let image;
             form.addEventListener('change', function(e) {
+                console.log('change')
                 state.uploadedImageSrc = URL.createObjectURL(event.target.files[0])
+                console.log(state.uploadedImageSrc)
                 const laserURL = "http://127.0.0.1:3001/lazer.png"
-                const image = new Image();
-                image.setAttribute('crossOrigin', 'anonymous');
-                image.setAttribute('id', 'uploaded');
+                const lazerWrapper = document.createElement("div")
+                lazerWrapper.setAttribute("id","lazer-wrapper")
+                if (!document.getElementById('uploaded')) {
+                    image = new Image();
+                    image.setAttribute('crossOrigin', 'anonymous');
+                    image.setAttribute('id', 'uploaded');
+                    imageArea.appendChild(lazerWrapper)
+                    image.src = state.uploadedImageSrc;
+                    imageArea.appendChild(image)
+                } else image.src = state.uploadedImageSrc;
+
+                document.getElementById("screenshot-button").disabled = false;
 
                 // document.getElementById("uploaded").innerHTML = "<img id='uploaded' />"
-                image.src = state.uploadedImageSrc;
-                imageArea.appendChild(image)
-                // imageArea.width = document.getElementById("uploaded").width;
-                // console.log(image.offsetHeight)
-                // console.log(image.offsetWidth)
-                // console.log(imageArea.width)
-            
+                // const newHeight = image.clientHeight;
+                // console.log(newHeight);
+                // document.getElementById("photo-box").setAttribute("style", `height: ${newHeight + 20}px`);
+
+                
+
                 var xPosition;
                 var yPosition;
                 const laser1 = new Image()
@@ -113,8 +126,8 @@
                 laser2.setAttribute('id',"two")
                 laser1.setAttribute('class',"laser")
                 laser2.setAttribute('class',"laser")
-                document.getElementById("app").appendChild(laser1);
-                document.getElementById("app").appendChild(laser2);
+                lazerWrapper.appendChild(laser1);
+                lazerWrapper.appendChild(laser2);
                 laser1.setAttribute('margin-left',"1000px")
                 laser2.setAttribute('margin-left',"1000px")
                 laser1.src = laserURL
@@ -132,6 +145,7 @@
 
                 const placeLaser = (toggledEye) => {
                     shotWidth = image.clientWidth;
+
                     if (toggledEye === "left") {
                         console.log('left')
                         laser1.style.left = xPosition + "px"
@@ -144,8 +158,17 @@
                 }
 
                 function getClickPosition(e) {
-                    xPosition = e.clientX - 90;
-                    yPosition = e.clientY - 480;
+                    const bounds = image.getBoundingClientRect();
+                    console.log(bounds)
+                    console.log(e.clientX)
+                    console.log('e.clientY')
+                    console.log(e.clientY)
+                    console.log('bounds top')
+                    console.log(bounds.top)
+                    // xPosition = e.clientX - (bounds.left);
+                    // yPosition = e.clientY - (4*bounds.top);
+                    xPosition = (e.clientX);
+                    yPosition = (e.clientY);
 
                     placeLaser(eye)
                     toggleEye();
