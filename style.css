@@ -8,8 +8,8 @@ html, body {
 #photo-box {
     text-align: center !important;
     background-color: white;
-    height: 420px;
-    width: 620px;
+    height: 340px;
+    width: 340px;
     text-align: center;
     border: 2px solid black;
     border-radius: 4px;
@@ -18,7 +18,8 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     min-height: 1px;
-    /* background-image: url('./default.png'); */
+    background-image: url('./default1.png') ;
+    background-repeat: round;
 }
 
 #photo-box:after {
