@@ -2,7 +2,9 @@ html, body {
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: azure;
+    background-image: url('./bitcoin.jpeg');
+    /* background-repeat: repeat; */
+    background-size: 100px;
 }
 
 #photo-box {
@@ -96,7 +98,12 @@ html, body {
 .list {
     width: 50%;
     text-align: left;
-    margin: 5% 0 5% 30%;
+    margin: 5% 0 5% 25%;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5%;
+    filter: drop-shadow(0.05rem 0.1rem 0.1rem black);
 }
 
 .list p {
@@ -104,7 +111,7 @@ html, body {
 }
 
 .list h1 {
-    margin-left: -5%
+    /* margin-left: -5% */
 }
 
 #upload-label, #screenshot-button {
