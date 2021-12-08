@@ -89,16 +89,30 @@ html, body {
 
 #uploaded {
     max-height: 600px;
+    max-width: 340px;
 }
 
 #lazer-wrapper {
     overflow: hidden;
 }
+@media screen and (max-width: 600px) {
+    .list {
+      width: 80%;
+      min-width: 340px;
+      margin: 5%;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .list {
+      width: 50%;
+      margin: 5% 0 5% 25%;
+    }
+}
 
 .list {
     width: 50%;
     text-align: left;
-    margin: 5% 0 5% 25%;
     background-color: #fff;
     border: 1px solid black;
     border-radius: 4px;
